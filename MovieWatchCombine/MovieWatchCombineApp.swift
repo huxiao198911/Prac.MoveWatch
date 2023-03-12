@@ -13,7 +13,7 @@ struct MovieWatchCombineApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MoviesListView(movieViewModel: MovieWatchViewModel() )
+            MovieWatchView(movieViewModel: MovieWatchViewModel() )
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

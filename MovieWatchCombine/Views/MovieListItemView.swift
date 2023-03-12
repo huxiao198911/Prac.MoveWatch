@@ -15,7 +15,7 @@ struct MovieListItemView: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
-            ImageView(viewModel: viewModel, movie: movie, movieImage: movieImage)
+            ImageView(viewModel: viewModel, movieImage: movieImage)
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(movie.title)

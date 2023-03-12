@@ -14,13 +14,21 @@ struct CrewListView: View {
     var body: some View {
         ScrollView {
             ForEach(viewModel.crews ?? [], id: \.self) { crew in
-                CrewListItemView(viewModel: viewModel, crew: crew)
-                Divider()
+                if let imagepath = viewModel.fetchImagePath(from: crew) {
+                    CrewListItemView(
+                        viewModel: viewModel,
+                        crew: crew,
+                        memberImage: viewModel.images.first(where: { $0.key == imagepath })?.value ?? UIImage()
+                    )
+                    Divider()
+                }
+                
             }
         }
         .onAppear {
             Task {
                 viewModel.crews = try await viewModel.fetchCredits(for: movie)?.crew
+                viewModel.images = try await viewModel.loadImages(from: viewModel.fetchImagePaths(from: viewModel.crews ?? []))
             }
         }
         .navigationTitle("Crew for the \(movie.title)")
@@ -31,16 +39,19 @@ struct CrewListView: View {
 struct CrewListItemView: View {
     var viewModel: MovieWatchViewModel
     var crew: Crew
+    var memberImage: UIImage
     
     var body: some View {
-        HStack(spacing: 16) {
-//            Image(uiImage: viewModel.fecthImage(by: crew.profilePath) ?? UIImage())
+        HStack(alignment: .top, spacing: 16) {
+            ImageView(viewModel: viewModel, movieImage: memberImage)
+            
             VStack(alignment: .leading) {
                 Text(crew.name)
                 Text(crew.department)
             }
             Spacer()
         }
+        .padding(16)
     }
 }
 

@@ -62,12 +62,62 @@ class MovieWatchViewModel: ObservableObject {
         return paths.compactMap { URL(string: $0) }
     }
     
+    func fetchImagePaths(from crews: [Crew]) async throws -> [URL] {
+        var paths: [String] = []
+        crews.forEach { crew in
+            var path: String = ""
+            if crew.profile_path != nil {
+                path = "https://image.tmdb.org/t/p/original/\(String(describing: crew.profile_path ?? ""))"
+            } else {
+                path = "https://image.tmdb.org/t/p/original/\(String(describing: crew.profile_path ?? ""))"
+            }
+            paths.append(path)
+        }
+        return paths.compactMap { URL(string: $0) }
+    }
+    
+    func fetchImagePaths(from casts: [Cast]) async throws -> [URL] {
+        var paths: [String] = []
+        casts.forEach { cast in
+            var path: String = ""
+            if cast.profile_path != nil {
+                path = "https://image.tmdb.org/t/p/original/\(String(describing: cast.profile_path ?? ""))"
+            } else {
+                path = "https://image.tmdb.org/t/p/original/\(String(describing: cast.profile_path ?? ""))"
+            }
+            paths.append(path)
+        }
+        return paths.compactMap { URL(string: $0) }
+    }
+    
     func fetchImagePath(from movie: Movie) -> URL? {
         var path: String = ""
         if movie.poster_path != nil {
             path = "https://image.tmdb.org/t/p/original/\(String(describing: movie.poster_path ?? ""))"
         } else {
             path = "https://image.tmdb.org/t/p/original/\(String(describing: movie.backdrop_path ?? ""))"
+        }
+        let url = URL(string: path)
+        return url
+    }
+    
+    func fetchImagePath(from crew: Crew) -> URL? {
+        var path: String = ""
+        if crew.profile_path != nil {
+            path = "https://image.tmdb.org/t/p/original/\(String(describing: crew.profile_path ?? ""))"
+        } else {
+            path = "https://image.tmdb.org/t/p/original/\(String(describing: crew.profile_path ?? ""))"
+        }
+        let url = URL(string: path)
+        return url
+    }
+    
+    func fetchImagePath(from cast: Cast) -> URL? {
+        var path: String = ""
+        if cast.profile_path != nil {
+            path = "https://image.tmdb.org/t/p/original/\(String(describing: cast.profile_path ?? ""))"
+        } else {
+            path = "https://image.tmdb.org/t/p/original/\(String(describing: cast.profile_path ?? ""))"
         }
         let url = URL(string: path)
         return url

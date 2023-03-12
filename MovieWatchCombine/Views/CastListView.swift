@@ -14,13 +14,20 @@ struct CastListView: View {
     var body: some View {
         ScrollView {
             ForEach(viewModel.casts ?? [], id: \.self) { cast in
-                CastListItemView(viewModel: viewModel, cast: cast)
-                Divider()
+                if let imagepath = viewModel.fetchImagePath(from: cast) {
+                    CastListItemView(
+                        viewModel: viewModel,
+                        cast: cast,
+                        memberImage: viewModel.images.first(where: { $0.key == imagepath })?.value ?? UIImage()
+                    )
+                    Divider()
+                }
             }
         }
         .onAppear {
             Task {
                 viewModel.casts = try await viewModel.fetchCredits(for: movie)?.cast
+                viewModel.images = try await viewModel.loadImages(from: viewModel.fetchImagePaths(from: viewModel.casts ?? []))
             }
         }
         .navigationTitle("Cast for the \(movie.title)")
@@ -31,16 +38,19 @@ struct CastListView: View {
 struct CastListItemView: View {
     var viewModel: MovieWatchViewModel
     var cast: Cast
+    var memberImage: UIImage
     
     var body: some View {
-        HStack(spacing: 16) {
-//            Image(uiImage: viewModel.fecthImage(by: crew.profilePath) ?? UIImage())
+        HStack(alignment: .top, spacing: 16) {
+            ImageView(viewModel: viewModel, movieImage: memberImage)
+            
             VStack(alignment: .leading) {
                 Text(cast.original_name)
                 Text(cast.character)
             }
             Spacer()
         }
+        .padding(16)
     }
 }
 

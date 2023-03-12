@@ -1,2 +1,4 @@
 *.DS_Store
 MovieWatchCombine/DataModels/Configure.swift
+*.xcbkptlist
+*.xcuserstate

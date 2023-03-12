@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ImageView: View {
     @ObservedObject var viewModel: MovieWatchViewModel
-    let movie: Movie
     var movieImage: UIImage
     
     var body: some View {
@@ -17,7 +16,7 @@ struct ImageView: View {
                 Image(uiImage: movieImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 100)
+                    .frame(width: 80)
         }
     }
 }

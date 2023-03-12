@@ -15,7 +15,7 @@ struct MovieDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                ImageView(viewModel: movieViewModel, movie: movie, movieImage: (movieImage ?? UIImage(contentsOfFile: "https://image.tmdb.org/t/p/original/kqjL17yufvn9OVLyXYpvtyrFfak.jpg")) ?? UIImage())
+                ImageView(viewModel: movieViewModel, movieImage: (movieImage ?? UIImage(contentsOfFile: "https://image.tmdb.org/t/p/original/kqjL17yufvn9OVLyXYpvtyrFfak.jpg")) ?? UIImage())
                 
                 Button {
                     movieViewModel.favoriteMovies.contains(movie) ? movieViewModel.removeFavorite(movie: movie) : movieViewModel.addFavorite(movie: movie)
