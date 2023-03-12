@@ -17,7 +17,6 @@ class MovieWatchViewModel: ObservableObject {
     @Published var movieList: [Movie]? = []
     @Published var casts: [Cast]? = []
     @Published var crews: [Crew]? = []
-    @Published var images: [URL: UIImage?] = [:]
     
     
     func isFavoriteMovie(movie: Movie) -> Bool {
@@ -46,48 +45,6 @@ class MovieWatchViewModel: ObservableObject {
         } else {
             return nil
         }
-    }
-    
-    func fetchImagePaths(from movies: [Movie]) async throws -> [URL] {
-        var paths: [String] = []
-        movies.forEach { movie in
-            var path: String = ""
-            if movie.poster_path != nil {
-                path = "https://image.tmdb.org/t/p/original/\(String(describing: movie.poster_path ?? ""))"
-            } else {
-                path = "https://image.tmdb.org/t/p/original/\(String(describing: movie.backdrop_path ?? ""))"
-            }
-            paths.append(path)
-        }
-        return paths.compactMap { URL(string: $0) }
-    }
-    
-    func fetchImagePaths(from crews: [Crew]) async throws -> [URL] {
-        var paths: [String] = []
-        crews.forEach { crew in
-            var path: String = ""
-            if crew.profile_path != nil {
-                path = "https://image.tmdb.org/t/p/original/\(String(describing: crew.profile_path ?? ""))"
-            } else {
-                path = "https://image.tmdb.org/t/p/original/\(String(describing: crew.profile_path ?? ""))"
-            }
-            paths.append(path)
-        }
-        return paths.compactMap { URL(string: $0) }
-    }
-    
-    func fetchImagePaths(from casts: [Cast]) async throws -> [URL] {
-        var paths: [String] = []
-        casts.forEach { cast in
-            var path: String = ""
-            if cast.profile_path != nil {
-                path = "https://image.tmdb.org/t/p/original/\(String(describing: cast.profile_path ?? ""))"
-            } else {
-                path = "https://image.tmdb.org/t/p/original/\(String(describing: cast.profile_path ?? ""))"
-            }
-            paths.append(path)
-        }
-        return paths.compactMap { URL(string: $0) }
     }
     
     func fetchImagePath(from movie: Movie) -> URL? {
@@ -131,24 +88,7 @@ class MovieWatchViewModel: ObservableObject {
         }
     }
     
-    func loadImages(from urls: [URL]) async throws -> [URL: UIImage?] {
-        try await withThrowingTaskGroup(of: (URL, UIImage?).self) { group in
-            for url in urls {
-                group.addTask{
-                    let image = try await self.loadImage(by: url)
-                    return (url, image)
-                }
-            }
-            
-            var images = [URL: UIImage]()
-            
-            for try await (url, image) in group {
-                images[url] = image
-            }
-            
-            return images
-        }
-    }
+   
     
     func addFavorite(movie: Movie) {
         favoriteMovies.append(movie)
@@ -160,6 +100,67 @@ class MovieWatchViewModel: ObservableObject {
         }
     }
     
+//    func loadImages(from urls: [URL]) async throws -> [URL: UIImage?] {
+//        try await withThrowingTaskGroup(of: (URL, UIImage?).self) { group in
+//            for url in urls {
+//                group.addTask{
+//                    let image = try await self.loadImage(by: url)
+//                    return (url, image)
+//                }
+//            }
+//            
+//            var images = [URL: UIImage]()
+//            
+//            for try await (url, image) in group {
+//                images[url] = image
+//            }
+//            
+//            return images
+//        }
+//    }
+    
+//    func fetchImagePaths(from movies: [Movie]) async throws -> [URL] {
+//        var paths: [String] = []
+//        movies.forEach { movie in
+//            var path: String = ""
+//            if movie.poster_path != nil {
+//                path = "https://image.tmdb.org/t/p/original/\(String(describing: movie.poster_path ?? ""))"
+//            } else {
+//                path = "https://image.tmdb.org/t/p/original/\(String(describing: movie.backdrop_path ?? ""))"
+//            }
+//            paths.append(path)
+//        }
+//        return paths.compactMap { URL(string: $0) }
+//    }
+//
+//    func fetchImagePaths(from crews: [Crew]) async throws -> [URL] {
+//        var paths: [String] = []
+//        crews.forEach { crew in
+//            var path: String = ""
+//            if crew.profile_path != nil {
+//                path = "https://image.tmdb.org/t/p/original/\(String(describing: crew.profile_path ?? ""))"
+//            } else {
+//                path = "https://image.tmdb.org/t/p/original/\(String(describing: crew.profile_path ?? ""))"
+//            }
+//            paths.append(path)
+//        }
+//        return paths.compactMap { URL(string: $0) }
+//    }
+//
+//    func fetchImagePaths(from casts: [Cast]) async throws -> [URL] {
+//        var paths: [String] = []
+//        casts.forEach { cast in
+//            var path: String = ""
+//            if cast.profile_path != nil {
+//                path = "https://image.tmdb.org/t/p/original/\(String(describing: cast.profile_path ?? ""))"
+//            } else {
+//                path = "https://image.tmdb.org/t/p/original/\(String(describing: cast.profile_path ?? ""))"
+//            }
+//            paths.append(path)
+//        }
+//        return paths.compactMap { URL(string: $0) }
+//    }
+//
 //    func fetchMoviesFromURL(_ completion: @escaping (Result<[Movie], Error>) -> Void) {
 //        if let url = URL(string: "https://api.themoviedb.org/3/genre/movie/list?api_key=\(apiKey)&language=en-US") {
 //            URLSession.shared.dataTask(with: url) { data, response, error in

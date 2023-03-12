@@ -5,17 +5,31 @@
 //  Created by Xiao Hu on 05/02/2023.
 //
 
+import CachedAsyncImage
 import SwiftUI
 
 struct MovieDetailsView: View {
     @ObservedObject var movieViewModel: MovieWatchViewModel
     var movie: Movie
-    @State private var movieImage: UIImage? = nil
+//    @State private var movieImage: UIImage? = nil
+    @State private var imagePath: URL? = nil
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                ImageView(viewModel: movieViewModel, movieImage: (movieImage ?? UIImage(contentsOfFile: "https://image.tmdb.org/t/p/original/kqjL17yufvn9OVLyXYpvtyrFfak.jpg")) ?? UIImage())
+                CachedAsyncImage(url: imagePath, urlCache: .imageCache) { phase in
+                    if let image = phase.image {
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    } else if phase.error != nil {
+                        Text("failed to load image")
+                            .foregroundColor(Color.red)
+                    } else {
+                        ProgressView()
+                    }
+                }
+                .frame(width: 100)
                 
                 Button {
                     movieViewModel.favoriteMovies.contains(movie) ? movieViewModel.removeFavorite(movie: movie) : movieViewModel.addFavorite(movie: movie)
@@ -54,9 +68,7 @@ struct MovieDetailsView: View {
         .padding(16)
         .onAppear {
             Task {
-                if let imagepath = movieViewModel.fetchImagePath(from: movie) {
-                    movieImage = try await movieViewModel.loadImage(by: imagepath)
-                }
+                imagePath = movieViewModel.fetchImagePath(from: movie)
             }
         }
     }

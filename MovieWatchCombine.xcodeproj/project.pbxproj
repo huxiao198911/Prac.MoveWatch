@@ -15,10 +15,8 @@
 		E211850529A23CCC00241E12 /* MovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E211850429A23CCC00241E12 /* MovieList.swift */; };
 		E211850629A23CCC00241E12 /* MovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E211850429A23CCC00241E12 /* MovieList.swift */; };
 		E211850729A23CCC00241E12 /* MovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E211850429A23CCC00241E12 /* MovieList.swift */; };
-		E211850929A26E1000241E12 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E211850829A26E1000241E12 /* ImageView.swift */; };
-		E211850A29A26E1000241E12 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E211850829A26E1000241E12 /* ImageView.swift */; };
-		E211850B29A26E1000241E12 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E211850829A26E1000241E12 /* ImageView.swift */; };
 		E23B875129BDF1CC00BCAD3A /* Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B875029BDF1CC00BCAD3A /* Configure.swift */; };
+		E23B875329BDFC8C00BCAD3A /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B875229BDFC8C00BCAD3A /* ImageCache.swift */; };
 		E259983F299928A400CD7447 /* MovieListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E259983E299928A400CD7447 /* MovieListItemView.swift */; };
 		E29093D5298FC18700D7F5AA /* MovieWatchCombineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29093D4298FC18700D7F5AA /* MovieWatchCombineApp.swift */; };
 		E29093D7298FC18700D7F5AA /* MoviesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29093D6298FC18700D7F5AA /* MoviesListView.swift */; };
@@ -41,6 +39,7 @@
 		E290941C298FCA9C00D7F5AA /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290941B298FCA9C00D7F5AA /* Cast.swift */; };
 		E290941E298FCEB400D7F5AA /* MovieWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290941D298FCEB400D7F5AA /* MovieWatchViewModel.swift */; };
 		E2909420298FD0C600D7F5AA /* CodableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290941F298FD0C600D7F5AA /* CodableUtils.swift */; };
+		E2DF8AB529BE0F40007E6703 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = E2DF8AB429BE0F40007E6703 /* CachedAsyncImage */; };
 		E2E61601298FE59D005D3738 /* MovieMock.json in Resources */ = {isa = PBXBuildFile; fileRef = E2909403298FC1CD00D7F5AA /* MovieMock.json */; };
 		E2E61602298FE59D005D3738 /* CastMock.json in Resources */ = {isa = PBXBuildFile; fileRef = E2909406298FC28B00D7F5AA /* CastMock.json */; };
 		E2E61603298FE59D005D3738 /* CrewMock.json in Resources */ = {isa = PBXBuildFile; fileRef = E2909408298FC2F200D7F5AA /* CrewMock.json */; };
@@ -69,9 +68,9 @@
 		E21184FE29A2384000241E12 /* MovieImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieImage.swift; sourceTree = "<group>"; };
 		E211850029A23B6700241E12 /* MovieCredit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCredit.swift; sourceTree = "<group>"; };
 		E211850429A23CCC00241E12 /* MovieList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieList.swift; sourceTree = "<group>"; };
-		E211850829A26E1000241E12 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		E23B874F29BDED3E00BCAD3A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E23B875029BDF1CC00BCAD3A /* Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configure.swift; sourceTree = "<group>"; };
+		E23B875229BDFC8C00BCAD3A /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		E259983E299928A400CD7447 /* MovieListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListItemView.swift; sourceTree = "<group>"; };
 		E29093D1298FC18700D7F5AA /* MovieWatchCombine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieWatchCombine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29093D4298FC18700D7F5AA /* MovieWatchCombineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWatchCombineApp.swift; sourceTree = "<group>"; };
@@ -105,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2DF8AB529BE0F40007E6703 /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,7 +209,6 @@
 				E2909413298FC94C00D7F5AA /* FavoriteMoviesListView.swift */,
 				E2E61604298FF971005D3738 /* MovieWatchView.swift */,
 				E259983E299928A400CD7447 /* MovieListItemView.swift */,
-				E211850829A26E1000241E12 /* ImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				E290941D298FCEB400D7F5AA /* MovieWatchViewModel.swift */,
+				E23B875229BDFC8C00BCAD3A /* ImageCache.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -252,6 +252,9 @@
 			dependencies = (
 			);
 			name = MovieWatchCombine;
+			packageProductDependencies = (
+				E2DF8AB429BE0F40007E6703 /* CachedAsyncImage */,
+			);
 			productName = MovieWatchCombine;
 			productReference = E29093D1298FC18700D7F5AA /* MovieWatchCombine.app */;
 			productType = "com.apple.product-type.application";
@@ -324,6 +327,9 @@
 				Base,
 			);
 			mainGroup = E29093C8298FC18700D7F5AA;
+			packageReferences = (
+				E2DF8AB329BE0F40007E6703 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+			);
 			productRefGroup = E29093D2298FC18700D7F5AA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -379,9 +385,9 @@
 				E2909409298FC2F200D7F5AA /* CrewMock.json in Sources */,
 				E2909404298FC1CD00D7F5AA /* MovieMock.json in Sources */,
 				E211850529A23CCC00241E12 /* MovieList.swift in Sources */,
+				E23B875329BDFC8C00BCAD3A /* ImageCache.swift in Sources */,
 				E290941E298FCEB400D7F5AA /* MovieWatchViewModel.swift in Sources */,
 				E2909420298FD0C600D7F5AA /* CodableUtils.swift in Sources */,
-				E211850929A26E1000241E12 /* ImageView.swift in Sources */,
 				E2909412298FC91800D7F5AA /* CastListView.swift in Sources */,
 				E29093D7298FC18700D7F5AA /* MoviesListView.swift in Sources */,
 				E259983F299928A400CD7447 /* MovieListItemView.swift in Sources */,
@@ -400,7 +406,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E211850A29A26E1000241E12 /* ImageView.swift in Sources */,
 				E29093EB298FC18800D7F5AA /* MovieWatchCombineTests.swift in Sources */,
 				E211850629A23CCC00241E12 /* MovieList.swift in Sources */,
 				E211850229A23B6700241E12 /* MovieCredit.swift in Sources */,
@@ -411,7 +416,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E211850B29A26E1000241E12 /* ImageView.swift in Sources */,
 				E29093F5298FC18800D7F5AA /* MovieWatchCombineUITests.swift in Sources */,
 				E211850729A23CCC00241E12 /* MovieList.swift in Sources */,
 				E211850329A23B6700241E12 /* MovieCredit.swift in Sources */,
@@ -723,6 +727,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E2DF8AB329BE0F40007E6703 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E2DF8AB429BE0F40007E6703 /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2DF8AB329BE0F40007E6703 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E29093DF298FC18800D7F5AA /* MovieWatchCombine.xcdatamodeld */ = {

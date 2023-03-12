@@ -5,6 +5,7 @@
 //  Created by Xiao Hu on 05/02/2023.
 //
 
+import CachedAsyncImage
 import SwiftUI
 
 struct CastListView: View {
@@ -14,20 +15,17 @@ struct CastListView: View {
     var body: some View {
         ScrollView {
             ForEach(viewModel.casts ?? [], id: \.self) { cast in
-                if let imagepath = viewModel.fetchImagePath(from: cast) {
                     CastListItemView(
                         viewModel: viewModel,
                         cast: cast,
-                        memberImage: viewModel.images.first(where: { $0.key == imagepath })?.value ?? UIImage()
+                        imagePath: viewModel.fetchImagePath(from: cast)
                     )
                     Divider()
-                }
             }
         }
         .onAppear {
             Task {
                 viewModel.casts = try await viewModel.fetchCredits(for: movie)?.cast
-                viewModel.images = try await viewModel.loadImages(from: viewModel.fetchImagePaths(from: viewModel.casts ?? []))
             }
         }
         .navigationTitle("Cast for the \(movie.title)")
@@ -38,11 +36,23 @@ struct CastListView: View {
 struct CastListItemView: View {
     var viewModel: MovieWatchViewModel
     var cast: Cast
-    var memberImage: UIImage
+    var imagePath: URL?
     
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
-            ImageView(viewModel: viewModel, movieImage: memberImage)
+            CachedAsyncImage(url: imagePath, urlCache: .imageCache) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } else if phase.error != nil {
+                    Text("failed to load image")
+                        .foregroundColor(Color.red)
+                } else {
+                    ProgressView()
+                }
+            }
+            .frame(width: 100)
             
             VStack(alignment: .leading) {
                 Text(cast.original_name)

@@ -5,6 +5,7 @@
 //  Created by Xiao Hu on 05/02/2023.
 //
 
+import CachedAsyncImage
 import SwiftUI
 
 struct CrewListView: View {
@@ -14,21 +15,17 @@ struct CrewListView: View {
     var body: some View {
         ScrollView {
             ForEach(viewModel.crews ?? [], id: \.self) { crew in
-                if let imagepath = viewModel.fetchImagePath(from: crew) {
-                    CrewListItemView(
-                        viewModel: viewModel,
-                        crew: crew,
-                        memberImage: viewModel.images.first(where: { $0.key == imagepath })?.value ?? UIImage()
-                    )
-                    Divider()
-                }
-                
+                CrewListItemView(
+                    viewModel: viewModel,
+                    crew: crew,
+                    imagePath: viewModel.fetchImagePath(from: crew)
+                )
+                Divider()
             }
         }
         .onAppear {
             Task {
                 viewModel.crews = try await viewModel.fetchCredits(for: movie)?.crew
-                viewModel.images = try await viewModel.loadImages(from: viewModel.fetchImagePaths(from: viewModel.crews ?? []))
             }
         }
         .navigationTitle("Crew for the \(movie.title)")
@@ -39,11 +36,24 @@ struct CrewListView: View {
 struct CrewListItemView: View {
     var viewModel: MovieWatchViewModel
     var crew: Crew
-    var memberImage: UIImage
+    var imagePath: URL?
     
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
-            ImageView(viewModel: viewModel, movieImage: memberImage)
+            CachedAsyncImage(url: imagePath, urlCache: .imageCache) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } else if phase.error != nil {
+                    Text("failed to load image")
+                        .foregroundColor(Color.red)
+                } else {
+                    // The image is loading
+                    ProgressView()
+                }
+            }
+            .frame(width: 100)
             
             VStack(alignment: .leading) {
                 Text(crew.name)

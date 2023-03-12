@@ -17,28 +17,21 @@ struct FavoriteMoviesListView: View {
                 
                 ScrollView {
                     ForEach(movieViewModel.favoriteMovies, id: \.self) { movie in
-                        if let imagepath = movieViewModel.fetchImagePath(from: movie) {
-                            NavigationLink {
-                                MovieDetailsView(movieViewModel: movieViewModel, movie: movie)
-                            } label: {
-                                MovieListItemView(
-                                    viewModel: movieViewModel,
-                                    movie: movie,
-                                    movieImage: movieViewModel.images.first(where: { $0.key == imagepath })?.value ?? UIImage(),
-                                    isFavorite: movieViewModel.favoriteMovies.contains(movie)
-                                )
-                            }
-                            Divider()
+                        NavigationLink {
+                            MovieDetailsView(movieViewModel: movieViewModel, movie: movie)
+                        } label: {
+                            MovieListItemView(
+                                viewModel: movieViewModel,
+                                movie: movie,
+                                imagePath: movieViewModel.fetchImagePath(from: movie),
+                                isFavorite: movieViewModel.favoriteMovies.contains(movie)
+                            )
                         }
+                        Divider()
                     }
                 }
             }
             .navigationBarTitle("Favorite Movies", displayMode: .inline)
-        }
-        .onAppear {
-            Task {
-                movieViewModel.images = try await movieViewModel.loadImages(from: movieViewModel.fetchImagePaths(from: movieViewModel.favoriteMovies ))
-            }
         }
     }
 }
