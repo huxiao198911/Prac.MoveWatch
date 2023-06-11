@@ -53,7 +53,7 @@ struct MovieDetailsView: View {
                 
                 Text("🗓️ release: \(movie.release_date)")
                     .bold()
-                Text("🤩 popularity: \(String(describing: movie.popularity))")
+                Text("🤩 popularity: \(String(format: "%.2f", movie.popularity))")
                     .bold()
                 Text("🎟️ rating: \(String(describing: movie.vote_average)) (\(String(describing: movie.vote_count)) votes)")
                     .bold()

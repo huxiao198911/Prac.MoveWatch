@@ -14,7 +14,7 @@ struct MovieList: Decodable {
     let total_pages: Int
 }
 
-struct Movie: Codable, Hashable {
+struct Movie: Codable, Hashable, Identifiable {
     let poster_path: String?
     let adult: Bool
     let overview: String

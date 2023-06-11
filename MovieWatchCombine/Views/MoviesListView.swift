@@ -38,6 +38,13 @@ struct MoviesListView: View {
                                         ),
                                         isFavorite: movieViewModel.favoriteMovies.contains(movie)
                                     )
+                                    .onAppear {
+                                        Task {
+                                            if self.movieViewModel.movieIsLast(movie) {
+                                                try await self.movieViewModel.loadMoreMovies()
+                                            }
+                                        }
+                                    }
                                 }
                                 Divider()
                             }
@@ -61,13 +68,14 @@ struct MoviesListView: View {
                         }
                     }
                 }
+                .navigationTitle("Popular Movies")
             }
-            .navigationBarTitle("Popular Movies", displayMode: .inline)
+            .listStyle(.plain)
+            .searchable(text: $searchText)
         }
-        .searchable(text: $searchText)
         .onAppear {
             Task {
-                try await movieViewModel.loadMoreMovies(movieListType: "popular")
+                try await movieViewModel.fetchMovieListFromURL(movieListType:.popular)
             }
         }
     }

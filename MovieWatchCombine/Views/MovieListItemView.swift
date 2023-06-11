@@ -38,7 +38,7 @@ struct MovieListItemView: View {
                 
                 HStack(spacing: 10) {
                     Text("🤩")
-                    Text(String(describing: movie.popularity))
+                    Text(String(format: "%.2f", movie.popularity))
                     Text("🎟️")
                     Text(String(describing: movie.vote_average))
                 }

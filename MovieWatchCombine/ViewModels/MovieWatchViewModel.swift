@@ -8,6 +8,13 @@
 import Foundation
 import SwiftUI
 
+enum MovieListType: String {
+    case now_playing
+    case popular
+    case top_rated
+    case upcoming
+}
+
 class MovieWatchViewModel: ObservableObject {
     let baseURL = "https://api.themoviedb.org/3/movie/"
     let language = "en-US"
@@ -17,40 +24,31 @@ class MovieWatchViewModel: ObservableObject {
     @Published var movieList: [Movie]? = []
     @Published var casts: [Cast]? = []
     @Published var crews: [Crew]? = []
-    var totalPages = 0
-    var page: Int = 1
-    
+    @Published var currentPage: Int = 1
+    @Published var movieListType: MovieListType = .popular
     
     func isFavoriteMovie(movie: Movie) -> Bool {
         return self.favoriteMovies.contains(where: { $0.id == movie.id }) ? true : false
     }
     
     @MainActor
-    func loadMoreMovies(movieListType: String) async throws {
-        let currentMovieList = try await self.fetchMovieListFromURL(movieListType: movieListType)
-        let thresholdIndex = self.movieList?.index(self.movieList?.endIndex ?? -1, offsetBy: -1)
-        if thresholdIndex == (self.movieList?.count ?? -1) - 1, (page + 1) <= currentMovieList?.total_pages ?? -1 {
-            page += 1
-            try await self.loadMovies(movieListType: movieListType)
-        }
+    func loadMoreMovies() async throws {
+        try await self.fetchMovieListFromURL(movieListType: self.movieListType)
     }
     
     @MainActor
-    func loadMovies(movieListType: String) async throws {
-        let currentMovieList = try await self.fetchMovieListFromURL(movieListType: movieListType)
-        self.movieList = currentMovieList?.results
-        self.totalPages = currentMovieList?.total_pages ?? -1
-    }
-    
-    func fetchMovieListFromURL(movieListType: String) async throws -> MovieList? {
-        let apiURLString =  "\(baseURL)\(movieListType)?api_key=\(apiKey)&language=\(language)&page=\(page)"
+    func fetchMovieListFromURL(movieListType: MovieListType) async throws {
+        let apiURLString =  "\(baseURL)\(movieListType.rawValue)?api_key=\(apiKey)&language=\(language)&page=\(self.currentPage)"
         guard let url = URL(string: apiURLString) else {
-            return nil
+            return
         }
         let (data, _) = try await URLSession.shared.data(from: url)
         let decoder = JSONDecoder()
         let movies = try decoder.decode(MovieList.self, from: data)
-        return movies
+        for movie in movies.results {
+            self.movieList?.append(movie)
+        }
+        self.currentPage += 1
     }
     
     func fetchCredits(for movie: Movie) async throws -> MovieCredit? {
@@ -85,5 +83,12 @@ class MovieWatchViewModel: ObservableObject {
         if let index = favoriteMovies.firstIndex(of: movie) {
             favoriteMovies.remove(at: index)
         }
+    }
+    
+    func movieIsLast(_ movie: Movie) -> Bool {
+        guard let lastMovie = self.movieList?.last else {
+            return false
+        }
+        return movie.id == lastMovie.id
     }
 }
