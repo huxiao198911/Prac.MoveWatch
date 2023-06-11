@@ -71,6 +71,6 @@ struct CastListItemView: View {
 
 //struct CastListView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        CastListView()
+//        CastListView(viewModel: MovieWatchViewModel(), movie: Movie(poster_path: <#T##String?#>, adult: <#T##Bool#>, overview: <#T##String#>, release_date: <#T##String#>, original_title: <#T##String#>, genre_ids: <#T##Array<Int>#>, id: <#T##Int#>, original_language: <#T##String#>, title: <#T##String#>, backdrop_path: <#T##String?#>, popularity: <#T##Float#>, vote_count: <#T##Int#>, vote_average: <#T##Float#>))
 //    }
 //}

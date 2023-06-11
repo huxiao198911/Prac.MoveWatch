@@ -7,18 +7,6 @@
 
 import Foundation
 
-//struct Movie: Decodable, Hashable {
-//    let id: Int
-//    let posterPath: String
-//    let backdropPath: String
-//    let title: String
-//    let releaseDate: String
-//    let popularity: Float
-//    let voteAverage: Float
-//    let voteCount: Int
-//    let overview: String
-//}
-
 struct MovieDetails {
     let api_key: String
     let movie_id: Int

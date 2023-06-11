@@ -80,9 +80,9 @@ struct MoviesListView: View {
         }
     }
 }
-//
-//struct MoviesListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MoviesListView()
-//    }
-//}
+
+struct MoviesListView_Previews: PreviewProvider {
+    static var previews: some View {
+        MoviesListView(movieViewModel: MovieWatchViewModel())
+    }
+}

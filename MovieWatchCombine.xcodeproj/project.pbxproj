@@ -38,7 +38,6 @@
 		E290941A298FCA8F00D7F5AA /* Crew.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2909419298FCA8F00D7F5AA /* Crew.swift */; };
 		E290941C298FCA9C00D7F5AA /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290941B298FCA9C00D7F5AA /* Cast.swift */; };
 		E290941E298FCEB400D7F5AA /* MovieWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290941D298FCEB400D7F5AA /* MovieWatchViewModel.swift */; };
-		E2909420298FD0C600D7F5AA /* CodableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290941F298FD0C600D7F5AA /* CodableUtils.swift */; };
 		E2DF8AB529BE0F40007E6703 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = E2DF8AB429BE0F40007E6703 /* CachedAsyncImage */; };
 		E2E61601298FE59D005D3738 /* MovieMock.json in Resources */ = {isa = PBXBuildFile; fileRef = E2909403298FC1CD00D7F5AA /* MovieMock.json */; };
 		E2E61602298FE59D005D3738 /* CastMock.json in Resources */ = {isa = PBXBuildFile; fileRef = E2909406298FC28B00D7F5AA /* CastMock.json */; };
@@ -95,7 +94,6 @@
 		E2909419298FCA8F00D7F5AA /* Crew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crew.swift; sourceTree = "<group>"; };
 		E290941B298FCA9C00D7F5AA /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		E290941D298FCEB400D7F5AA /* MovieWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWatchViewModel.swift; sourceTree = "<group>"; };
-		E290941F298FD0C600D7F5AA /* CodableUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUtils.swift; sourceTree = "<group>"; };
 		E2E61604298FF971005D3738 /* MovieWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWatchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,7 +157,6 @@
 				E29093DD298FC18800D7F5AA /* Persistence.swift */,
 				E29093DF298FC18800D7F5AA /* MovieWatchCombine.xcdatamodeld */,
 				E29093DA298FC18800D7F5AA /* Preview Content */,
-				E290941F298FD0C600D7F5AA /* CodableUtils.swift */,
 			);
 			path = MovieWatchCombine;
 			sourceTree = "<group>";
@@ -387,7 +384,6 @@
 				E211850529A23CCC00241E12 /* MovieList.swift in Sources */,
 				E23B875329BDFC8C00BCAD3A /* ImageCache.swift in Sources */,
 				E290941E298FCEB400D7F5AA /* MovieWatchViewModel.swift in Sources */,
-				E2909420298FD0C600D7F5AA /* CodableUtils.swift in Sources */,
 				E2909412298FC91800D7F5AA /* CastListView.swift in Sources */,
 				E29093D7298FC18700D7F5AA /* MoviesListView.swift in Sources */,
 				E259983F299928A400CD7447 /* MovieListItemView.swift in Sources */,
