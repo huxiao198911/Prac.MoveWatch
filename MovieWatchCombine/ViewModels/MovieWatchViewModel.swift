@@ -17,64 +17,61 @@ class MovieWatchViewModel: ObservableObject {
     @Published var movieList: [Movie]? = []
     @Published var casts: [Cast]? = []
     @Published var crews: [Crew]? = []
+    var totalPages = 0
+    var page: Int = 1
     
     
     func isFavoriteMovie(movie: Movie) -> Bool {
         return self.favoriteMovies.contains(where: { $0.id == movie.id }) ? true : false
     }
     
-    func fetchMovieListFromURL(page: Int, movieListType: String) async throws -> MovieList? {
+    @MainActor
+    func loadMoreMovies(movieListType: String) async throws {
+        let currentMovieList = try await self.fetchMovieListFromURL(movieListType: movieListType)
+        let thresholdIndex = self.movieList?.index(self.movieList?.endIndex ?? -1, offsetBy: -1)
+        if thresholdIndex == (self.movieList?.count ?? -1) - 1, (page + 1) <= currentMovieList?.total_pages ?? -1 {
+            page += 1
+            try await self.loadMovies(movieListType: movieListType)
+        }
+    }
+    
+    @MainActor
+    func loadMovies(movieListType: String) async throws {
+        let currentMovieList = try await self.fetchMovieListFromURL(movieListType: movieListType)
+        self.movieList = currentMovieList?.results
+        self.totalPages = currentMovieList?.total_pages ?? -1
+    }
+    
+    func fetchMovieListFromURL(movieListType: String) async throws -> MovieList? {
         let apiURLString =  "\(baseURL)\(movieListType)?api_key=\(apiKey)&language=\(language)&page=\(page)"
-        if let url = URL(string: apiURLString) {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let decoder = JSONDecoder()
-            let movies = try decoder.decode(MovieList.self, from: data)
-            return movies
-        } else {
+        guard let url = URL(string: apiURLString) else {
             return nil
         }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let decoder = JSONDecoder()
+        let movies = try decoder.decode(MovieList.self, from: data)
+        return movies
     }
     
     func fetchCredits(for movie: Movie) async throws -> MovieCredit? {
         let apiURLString = "\(baseURL)\(movie.id)/credits?api_key=\(apiKey)&language=\(language)"
-        if let url = URL(string: apiURLString) {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let decoder = JSONDecoder()
-            let movieCredit = try decoder.decode(MovieCredit.self, from: data)
-            return movieCredit
-        } else {
+        guard let url = URL(string: apiURLString) else {
             return nil
         }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let decoder = JSONDecoder()
+        let movieCredit = try decoder.decode(MovieCredit.self, from: data)
+        return movieCredit
     }
     
-    func fetchImagePath(from movie: Movie) -> URL? {
+    func fetchImagePath(posterPath: String?, backdropPath: String?) -> URL? {
         var path: String = ""
-        if movie.poster_path != nil {
-            path = "https://image.tmdb.org/t/p/original/\(String(describing: movie.poster_path ?? ""))"
+        if let posterPath {
+            path = "https://image.tmdb.org/t/p/original/\(String(describing: posterPath))"
+        } else if let backdropPath{
+            path = "https://image.tmdb.org/t/p/original/\(String(describing: backdropPath))"
         } else {
-            path = "https://image.tmdb.org/t/p/original/\(String(describing: movie.backdrop_path ?? ""))"
-        }
-        let url = URL(string: path)
-        return url
-    }
-    
-    func fetchImagePath(from crew: Crew) -> URL? {
-        var path: String = ""
-        if crew.profile_path != nil {
-            path = "https://image.tmdb.org/t/p/original/\(String(describing: crew.profile_path ?? ""))"
-        } else {
-            path = "https://image.tmdb.org/t/p/original/\(String(describing: crew.profile_path ?? ""))"
-        }
-        let url = URL(string: path)
-        return url
-    }
-    
-    func fetchImagePath(from cast: Cast) -> URL? {
-        var path: String = ""
-        if cast.profile_path != nil {
-            path = "https://image.tmdb.org/t/p/original/\(String(describing: cast.profile_path ?? ""))"
-        } else {
-            path = "https://image.tmdb.org/t/p/original/\(String(describing: cast.profile_path ?? ""))"
+            path = ""
         }
         let url = URL(string: path)
         return url
@@ -83,7 +80,7 @@ class MovieWatchViewModel: ObservableObject {
     func addFavorite(movie: Movie) {
         favoriteMovies.append(movie)
     }
-
+    
     func removeFavorite(movie: Movie) {
         if let index = favoriteMovies.firstIndex(of: movie) {
             favoriteMovies.remove(at: index)

@@ -14,13 +14,18 @@ struct CastListView: View {
     
     var body: some View {
         ScrollView {
-            ForEach(viewModel.casts ?? [], id: \.self) { cast in
-                    CastListItemView(
-                        viewModel: viewModel,
-                        cast: cast,
-                        imagePath: viewModel.fetchImagePath(from: cast)
-                    )
-                    Divider()
+            LazyVStack {
+                ForEach(viewModel.casts ?? [], id: \.self) { cast in
+                        CastListItemView(
+                            viewModel: viewModel,
+                            cast: cast,
+                            imagePath: viewModel.fetchImagePath(
+                                posterPath: cast.profile_path,
+                                backdropPath: nil
+                            )
+                        )
+                        Divider()
+                }
             }
         }
         .onAppear {

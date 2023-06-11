@@ -68,7 +68,10 @@ struct MovieDetailsView: View {
         .padding(16)
         .onAppear {
             Task {
-                imagePath = movieViewModel.fetchImagePath(from: movie)
+                imagePath = movieViewModel.fetchImagePath(
+                    posterPath: movie.poster_path,
+                    backdropPath: movie.backdrop_path
+                )
             }
         }
     }

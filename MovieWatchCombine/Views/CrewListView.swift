@@ -14,13 +14,18 @@ struct CrewListView: View {
     
     var body: some View {
         ScrollView {
-            ForEach(viewModel.crews ?? [], id: \.self) { crew in
-                CrewListItemView(
-                    viewModel: viewModel,
-                    crew: crew,
-                    imagePath: viewModel.fetchImagePath(from: crew)
-                )
-                Divider()
+            LazyVStack {
+                ForEach(viewModel.crews ?? [], id: \.self) { crew in
+                    CrewListItemView(
+                        viewModel: viewModel,
+                        crew: crew,
+                        imagePath: viewModel.fetchImagePath(
+                            posterPath: crew.profile_path,
+                            backdropPath: nil
+                        )
+                    )
+                    Divider()
+                }
             }
         }
         .onAppear {

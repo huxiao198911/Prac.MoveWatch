@@ -16,18 +16,23 @@ struct FavoriteMoviesListView: View {
                 Divider()
                 
                 ScrollView {
-                    ForEach(movieViewModel.favoriteMovies, id: \.self) { movie in
-                        NavigationLink {
-                            MovieDetailsView(movieViewModel: movieViewModel, movie: movie)
-                        } label: {
-                            MovieListItemView(
-                                viewModel: movieViewModel,
-                                movie: movie,
-                                imagePath: movieViewModel.fetchImagePath(from: movie),
-                                isFavorite: movieViewModel.favoriteMovies.contains(movie)
-                            )
+                    LazyVStack {
+                        ForEach(movieViewModel.favoriteMovies, id: \.self) { movie in
+                            NavigationLink {
+                                MovieDetailsView(movieViewModel: movieViewModel, movie: movie)
+                            } label: {
+                                MovieListItemView(
+                                    viewModel: movieViewModel,
+                                    movie: movie,
+                                    imagePath: movieViewModel.fetchImagePath(
+                                        posterPath: movie.poster_path,
+                                        backdropPath: movie.backdrop_path
+                                    ),
+                                    isFavorite: movieViewModel.favoriteMovies.contains(movie)
+                                )
+                            }
+                            Divider()
                         }
-                        Divider()
                     }
                 }
             }

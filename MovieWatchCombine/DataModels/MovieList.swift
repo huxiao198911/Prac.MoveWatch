@@ -29,12 +29,3 @@ struct Movie: Codable, Hashable {
     let vote_count: Int
     let vote_average: Float
 }
- 
-
-/**
- Path Parameters
- list_id: Int  Optional
- Headers
- Content-Type: string  required
- Authorization string 2 validations optional
- */

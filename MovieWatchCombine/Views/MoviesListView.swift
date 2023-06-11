@@ -9,33 +9,65 @@ import SwiftUI
 
 struct MoviesListView: View {
     @ObservedObject var movieViewModel: MovieWatchViewModel
+    @State private var searchText = ""
+    
+    private func filterMovies(movies: [Movie]) -> [Movie] {
+        movies.filter {
+            $0.title.lowercased().contains(searchText.lowercased())
+        }
+    }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Divider()
                 
                 ScrollView{
-                    ForEach(movieViewModel.movieList ?? [], id: \.self) { movie in
-                        NavigationLink {
-                            MovieDetailsView(movieViewModel: movieViewModel, movie: movie)
-                        } label: {
-                            MovieListItemView(
-                                viewModel: movieViewModel,
-                                movie: movie,
-                                imagePath: movieViewModel.fetchImagePath(from: movie),
-                                isFavorite: movieViewModel.favoriteMovies.contains(movie)
-                            )
+                    LazyVStack {
+                        if self.searchText.isEmpty {
+                            ForEach(movieViewModel.movieList ?? [], id: \.self) { movie in
+                                NavigationLink {
+                                    MovieDetailsView(movieViewModel: movieViewModel, movie: movie)
+                                } label: {
+                                    MovieListItemView(
+                                        viewModel: movieViewModel,
+                                        movie: movie,
+                                        imagePath: movieViewModel.fetchImagePath(
+                                            posterPath: movie.poster_path,
+                                            backdropPath: movie.backdrop_path
+                                        ),
+                                        isFavorite: movieViewModel.favoriteMovies.contains(movie)
+                                    )
+                                }
+                                Divider()
+                            }
+                        } else {
+                            ForEach(self.filterMovies(movies: movieViewModel.movieList ?? []), id: \.self) { movie in
+                                NavigationLink {
+                                    MovieDetailsView(movieViewModel: movieViewModel, movie: movie)
+                                } label: {
+                                    MovieListItemView(
+                                        viewModel: movieViewModel,
+                                        movie: movie,
+                                        imagePath: movieViewModel.fetchImagePath(
+                                            posterPath: movie.poster_path,
+                                            backdropPath: movie.backdrop_path
+                                        ),
+                                        isFavorite: movieViewModel.favoriteMovies.contains(movie)
+                                    )
+                                }
+                                Divider()
+                            }
                         }
-                        Divider()
                     }
                 }
             }
             .navigationBarTitle("Popular Movies", displayMode: .inline)
         }
+        .searchable(text: $searchText)
         .onAppear {
             Task {
-                movieViewModel.movieList = try await movieViewModel.fetchMovieListFromURL(page: 1, movieListType: "popular")?.results
+                try await movieViewModel.loadMoreMovies(movieListType: "popular")
             }
         }
     }
