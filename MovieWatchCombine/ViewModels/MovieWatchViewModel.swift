@@ -32,26 +32,7 @@ class MovieWatchViewModel: ObservableObject {
     @Published var crews: [Crew]? = []
     @Published var currentPage: Int = 1
     @Published var movieListType: MovieListType = .popular
-    
-    let totalPage = 5
-    
-    func getButtonLabel(by movieListType: MovieListType) -> String {
-        switch movieListType {
-        case .now_playing:
-            return "Now Playing"
-        case .popular:
-            return "Popular"
-        case .top_rated:
-            return "Top Rated"
-        case .upcoming:
-            return "Upcoming"
-        }
-    }
-    
-    func isFavoriteMovie(movie: Movie) -> Bool {
-        return self.favoriteMovies.contains(where: { $0.id == movie.id }) ? true : false
-    }
-    
+
     @MainActor
     func loadMoreMovies(movieListType: MovieListType) async throws {
         try await self.fetchMovieListFromURL(movieListType: movieListType)
@@ -111,5 +92,22 @@ class MovieWatchViewModel: ObservableObject {
             return false
         }
         return movie.id == lastMovie.id
+    }
+    
+    func getButtonLabel(by movieListType: MovieListType) -> String {
+        switch movieListType {
+        case .now_playing:
+            return "Now Playing"
+        case .popular:
+            return "Popular"
+        case .top_rated:
+            return "Top Rated"
+        case .upcoming:
+            return "Upcoming"
+        }
+    }
+    
+    func isFavoriteMovie(movie: Movie) -> Bool {
+        return self.favoriteMovies.contains(where: { $0.id == movie.id }) ? true : false
     }
 }

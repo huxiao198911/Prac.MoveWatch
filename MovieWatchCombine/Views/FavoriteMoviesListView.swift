@@ -40,9 +40,3 @@ struct FavoriteMoviesListView: View {
         }
     }
 }
-
-//struct FavoriteMoviesListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FavoriteMoviesListView()
-//    }
-//}

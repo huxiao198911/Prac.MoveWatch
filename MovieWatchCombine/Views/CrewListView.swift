@@ -69,9 +69,3 @@ struct CrewListItemView: View {
         .padding(16)
     }
 }
-
-//struct CrewListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CrewListView(viewModel: MovieWatchViewModel(), movie: <#Movie#>)
-//    }
-//}
