@@ -20,9 +20,30 @@ struct MoviesListView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                HStack {
+                    Picker(selection: self.$movieViewModel.movieListType,
+                           content: {
+                        ForEach(MovieListType.allCases, id: \.self) { type in
+                            Text(self.movieViewModel.getButtonLabel(by: type))
+                        }
+                    }, label: {
+                        Text(self.movieViewModel.movieListType.rawValue)
+                    })
+                    .pickerStyle(SegmentedPickerStyle())
+                    .onChange(of: self.movieViewModel.movieListType) { newValue in
+                        self.movieViewModel.movieListType = newValue
+                        self.movieViewModel.currentPage = 1
+                        self.movieViewModel.movieList = []
+                        Task {
+                            try await movieViewModel.fetchMovieListFromURL(movieListType: self.movieViewModel.movieListType)
+                        }
+                    }
+                }
+                .padding()
+                
                 Divider()
                 
-                ScrollView{
+                ScrollView {
                     LazyVStack {
                         if self.searchText.isEmpty {
                             ForEach(movieViewModel.movieList ?? [], id: \.self) { movie in
@@ -41,7 +62,7 @@ struct MoviesListView: View {
                                     .onAppear {
                                         Task {
                                             if self.movieViewModel.movieIsLast(movie) {
-                                                try await self.movieViewModel.loadMoreMovies()
+                                                try await self.movieViewModel.loadMoreMovies(movieListType: self.movieViewModel.movieListType)
                                             }
                                         }
                                     }
@@ -49,33 +70,35 @@ struct MoviesListView: View {
                                 Divider()
                             }
                         } else {
-                            ForEach(self.filterMovies(movies: movieViewModel.movieList ?? []), id: \.self) { movie in
-                                NavigationLink {
-                                    MovieDetailsView(movieViewModel: movieViewModel, movie: movie)
-                                } label: {
-                                    MovieListItemView(
-                                        viewModel: movieViewModel,
-                                        movie: movie,
-                                        imagePath: movieViewModel.fetchImagePath(
-                                            posterPath: movie.poster_path,
-                                            backdropPath: movie.backdrop_path
-                                        ),
-                                        isFavorite: movieViewModel.favoriteMovies.contains(movie)
-                                    )
+                            LazyVStack {
+                                ForEach(self.filterMovies(movies: movieViewModel.movieList ?? []), id: \.self) { movie in
+                                    NavigationLink {
+                                        MovieDetailsView(movieViewModel: movieViewModel, movie: movie)
+                                    } label: {
+                                        MovieListItemView(
+                                            viewModel: movieViewModel,
+                                            movie: movie,
+                                            imagePath: movieViewModel.fetchImagePath(
+                                                posterPath: movie.poster_path,
+                                                backdropPath: movie.backdrop_path
+                                            ),
+                                            isFavorite: movieViewModel.favoriteMovies.contains(movie)
+                                        )
+                                    }
+                                    Divider()
                                 }
-                                Divider()
                             }
                         }
                     }
                 }
-                .navigationTitle("Popular Movies")
+                .navigationTitle("\(self.movieViewModel.getButtonLabel(by: self.movieViewModel.movieListType)) Movies")
             }
             .listStyle(.plain)
             .searchable(text: $searchText)
         }
         .onAppear {
             Task {
-                try await movieViewModel.fetchMovieListFromURL(movieListType:.popular)
+                try await movieViewModel.fetchMovieListFromURL(movieListType: self.movieViewModel.movieListType)
             }
         }
     }

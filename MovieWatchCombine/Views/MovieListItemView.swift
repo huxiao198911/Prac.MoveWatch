@@ -50,9 +50,3 @@ struct MovieListItemView: View {
         .padding(16)
     }
 }
-//
-//struct MovieListItemView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MovieListItemView()
-//    }
-//}

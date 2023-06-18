@@ -9,10 +9,16 @@ import Foundation
 import SwiftUI
 
 enum MovieListType: String {
-    case now_playing
     case popular
+    case now_playing
     case top_rated
     case upcoming
+}
+
+extension MovieListType {
+    static var allCases: [MovieListType] {
+           return [.popular, .now_playing, .top_rated, .upcoming]
+       }
 }
 
 class MovieWatchViewModel: ObservableObject {
@@ -27,13 +33,28 @@ class MovieWatchViewModel: ObservableObject {
     @Published var currentPage: Int = 1
     @Published var movieListType: MovieListType = .popular
     
+    let totalPage = 5
+    
+    func getButtonLabel(by movieListType: MovieListType) -> String {
+        switch movieListType {
+        case .now_playing:
+            return "Now Playing"
+        case .popular:
+            return "Popular"
+        case .top_rated:
+            return "Top Rated"
+        case .upcoming:
+            return "Upcoming"
+        }
+    }
+    
     func isFavoriteMovie(movie: Movie) -> Bool {
         return self.favoriteMovies.contains(where: { $0.id == movie.id }) ? true : false
     }
     
     @MainActor
-    func loadMoreMovies() async throws {
-        try await self.fetchMovieListFromURL(movieListType: self.movieListType)
+    func loadMoreMovies(movieListType: MovieListType) async throws {
+        try await self.fetchMovieListFromURL(movieListType: movieListType)
     }
     
     @MainActor

@@ -11,7 +11,6 @@ import SwiftUI
 struct MovieDetailsView: View {
     @ObservedObject var movieViewModel: MovieWatchViewModel
     var movie: Movie
-//    @State private var movieImage: UIImage? = nil
     @State private var imagePath: URL? = nil
     
     var body: some View {
@@ -76,9 +75,3 @@ struct MovieDetailsView: View {
         }
     }
 }
-
-//struct MovieDetailsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MovieDetailsView()
-//    }
-//}

@@ -70,8 +70,8 @@ struct CrewListItemView: View {
     }
 }
 
-struct CrewListView_Previews: PreviewProvider {
-    static var previews: some View {
-        CrewListView(viewModel: MovieWatchViewModel())
-    }
-}
+//struct CrewListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CrewListView(viewModel: MovieWatchViewModel(), movie: <#Movie#>)
+//    }
+//}

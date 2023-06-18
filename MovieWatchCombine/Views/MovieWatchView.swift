@@ -17,7 +17,7 @@ struct MovieWatchView: View {
             TabView {
                 MoviesListView(movieViewModel: movieViewModel)
                     .tabItem {
-                        Label("Popular movies", systemImage: "film")
+                        Label("\(self.movieViewModel.getButtonLabel(by: self.movieViewModel.movieListType)) movies", systemImage: "film")
                     }
                 FavoriteMoviesListView(movieViewModel: movieViewModel)
                     .tabItem {
