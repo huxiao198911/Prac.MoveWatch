@@ -18,13 +18,13 @@
 		E23B875129BDF1CC00BCAD3A /* Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B875029BDF1CC00BCAD3A /* Configure.swift */; };
 		E23B875329BDFC8C00BCAD3A /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B875229BDFC8C00BCAD3A /* ImageCache.swift */; };
 		E259983F299928A400CD7447 /* MovieListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E259983E299928A400CD7447 /* MovieListItemView.swift */; };
-		E29093D5298FC18700D7F5AA /* MovieWatchCombineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29093D4298FC18700D7F5AA /* MovieWatchCombineApp.swift */; };
+		E29093D5298FC18700D7F5AA /* MovieWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29093D4298FC18700D7F5AA /* MovieWatchApp.swift */; };
 		E29093D7298FC18700D7F5AA /* MoviesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29093D6298FC18700D7F5AA /* MoviesListView.swift */; };
 		E29093D9298FC18800D7F5AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E29093D8298FC18800D7F5AA /* Assets.xcassets */; };
 		E29093DC298FC18800D7F5AA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E29093DB298FC18800D7F5AA /* Preview Assets.xcassets */; };
 		E29093DE298FC18800D7F5AA /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29093DD298FC18800D7F5AA /* Persistence.swift */; };
 		E29093E1298FC18800D7F5AA /* MovieWatchCombine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E29093DF298FC18800D7F5AA /* MovieWatchCombine.xcdatamodeld */; };
-		E29093EB298FC18800D7F5AA /* MovieWatchCombineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29093EA298FC18800D7F5AA /* MovieWatchCombineTests.swift */; };
+		E29093EB298FC18800D7F5AA /* MovieWatchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29093EA298FC18800D7F5AA /* MovieWatchViewModelTests.swift */; };
 		E29093F5298FC18800D7F5AA /* MovieWatchCombineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29093F4298FC18800D7F5AA /* MovieWatchCombineUITests.swift */; };
 		E29093F7298FC18800D7F5AA /* MovieWatchCombineUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29093F6298FC18800D7F5AA /* MovieWatchCombineUITestsLaunchTests.swift */; };
 		E2909404298FC1CD00D7F5AA /* MovieMock.json in Sources */ = {isa = PBXBuildFile; fileRef = E2909403298FC1CD00D7F5AA /* MovieMock.json */; };
@@ -38,6 +38,8 @@
 		E290941A298FCA8F00D7F5AA /* Crew.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2909419298FCA8F00D7F5AA /* Crew.swift */; };
 		E290941C298FCA9C00D7F5AA /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290941B298FCA9C00D7F5AA /* Cast.swift */; };
 		E290941E298FCEB400D7F5AA /* MovieWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290941D298FCEB400D7F5AA /* MovieWatchViewModel.swift */; };
+		E2D6C8DE2A3F556100242C28 /* CodableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D6C8DD2A3F556100242C28 /* CodableUtils.swift */; };
+		E2D6C8E12A3F562D00242C28 /* UpcomingMovieListMock.json in Sources */ = {isa = PBXBuildFile; fileRef = E2D6C8E02A3F562D00242C28 /* UpcomingMovieListMock.json */; };
 		E2DF8AB529BE0F40007E6703 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = E2DF8AB429BE0F40007E6703 /* CachedAsyncImage */; };
 		E2E61601298FE59D005D3738 /* MovieMock.json in Resources */ = {isa = PBXBuildFile; fileRef = E2909403298FC1CD00D7F5AA /* MovieMock.json */; };
 		E2E61602298FE59D005D3738 /* CastMock.json in Resources */ = {isa = PBXBuildFile; fileRef = E2909406298FC28B00D7F5AA /* CastMock.json */; };
@@ -71,16 +73,16 @@
 		E23B875029BDF1CC00BCAD3A /* Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configure.swift; sourceTree = "<group>"; };
 		E23B875229BDFC8C00BCAD3A /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		E259983E299928A400CD7447 /* MovieListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListItemView.swift; sourceTree = "<group>"; };
-		E29093D1298FC18700D7F5AA /* MovieWatchCombine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieWatchCombine.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E29093D4298FC18700D7F5AA /* MovieWatchCombineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWatchCombineApp.swift; sourceTree = "<group>"; };
+		E29093D1298FC18700D7F5AA /* MovieWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E29093D4298FC18700D7F5AA /* MovieWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWatchApp.swift; sourceTree = "<group>"; };
 		E29093D6298FC18700D7F5AA /* MoviesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListView.swift; sourceTree = "<group>"; };
 		E29093D8298FC18800D7F5AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E29093DB298FC18800D7F5AA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E29093DD298FC18800D7F5AA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E29093E0298FC18800D7F5AA /* MovieWatchCombine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieWatchCombine.xcdatamodel; sourceTree = "<group>"; };
-		E29093E6298FC18800D7F5AA /* MovieWatchCombineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieWatchCombineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E29093EA298FC18800D7F5AA /* MovieWatchCombineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWatchCombineTests.swift; sourceTree = "<group>"; };
-		E29093F0298FC18800D7F5AA /* MovieWatchCombineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieWatchCombineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E29093E6298FC18800D7F5AA /* MovieWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E29093EA298FC18800D7F5AA /* MovieWatchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWatchViewModelTests.swift; sourceTree = "<group>"; };
+		E29093F0298FC18800D7F5AA /* MovieWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29093F4298FC18800D7F5AA /* MovieWatchCombineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWatchCombineUITests.swift; sourceTree = "<group>"; };
 		E29093F6298FC18800D7F5AA /* MovieWatchCombineUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWatchCombineUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E2909403298FC1CD00D7F5AA /* MovieMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MovieMock.json; sourceTree = "<group>"; };
@@ -94,6 +96,8 @@
 		E2909419298FCA8F00D7F5AA /* Crew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crew.swift; sourceTree = "<group>"; };
 		E290941B298FCA9C00D7F5AA /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		E290941D298FCEB400D7F5AA /* MovieWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWatchViewModel.swift; sourceTree = "<group>"; };
+		E2D6C8DD2A3F556100242C28 /* CodableUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUtils.swift; sourceTree = "<group>"; };
+		E2D6C8E02A3F562D00242C28 /* UpcomingMovieListMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UpcomingMovieListMock.json; sourceTree = "<group>"; };
 		E2E61604298FF971005D3738 /* MovieWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWatchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,9 +131,9 @@
 			isa = PBXGroup;
 			children = (
 				E23B874F29BDED3E00BCAD3A /* .gitignore */,
-				E29093D3298FC18700D7F5AA /* MovieWatchCombine */,
-				E29093E9298FC18800D7F5AA /* MovieWatchCombineTests */,
-				E29093F3298FC18800D7F5AA /* MovieWatchCombineUITests */,
+				E29093D3298FC18700D7F5AA /* MovieWatch */,
+				E29093E9298FC18800D7F5AA /* MovieWatchTests */,
+				E29093F3298FC18800D7F5AA /* MovieWatchUITests */,
 				E29093D2298FC18700D7F5AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -137,14 +141,14 @@
 		E29093D2298FC18700D7F5AA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E29093D1298FC18700D7F5AA /* MovieWatchCombine.app */,
-				E29093E6298FC18800D7F5AA /* MovieWatchCombineTests.xctest */,
-				E29093F0298FC18800D7F5AA /* MovieWatchCombineUITests.xctest */,
+				E29093D1298FC18700D7F5AA /* MovieWatch.app */,
+				E29093E6298FC18800D7F5AA /* MovieWatchTests.xctest */,
+				E29093F0298FC18800D7F5AA /* MovieWatchUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E29093D3298FC18700D7F5AA /* MovieWatchCombine */ = {
+		E29093D3298FC18700D7F5AA /* MovieWatch */ = {
 			isa = PBXGroup;
 			children = (
 				E21184FC29A2316900241E12 /* MovieDatabaseAPI.swift */,
@@ -152,13 +156,13 @@
 				E290940B298FC8A500D7F5AA /* ViewModels */,
 				E290940A298FC89300D7F5AA /* Views */,
 				E2909405298FC23E00D7F5AA /* DataMock */,
-				E29093D4298FC18700D7F5AA /* MovieWatchCombineApp.swift */,
+				E29093D4298FC18700D7F5AA /* MovieWatchApp.swift */,
 				E29093D8298FC18800D7F5AA /* Assets.xcassets */,
 				E29093DD298FC18800D7F5AA /* Persistence.swift */,
 				E29093DF298FC18800D7F5AA /* MovieWatchCombine.xcdatamodeld */,
 				E29093DA298FC18800D7F5AA /* Preview Content */,
 			);
-			path = MovieWatchCombine;
+			path = MovieWatch;
 			sourceTree = "<group>";
 		};
 		E29093DA298FC18800D7F5AA /* Preview Content */ = {
@@ -169,21 +173,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		E29093E9298FC18800D7F5AA /* MovieWatchCombineTests */ = {
+		E29093E9298FC18800D7F5AA /* MovieWatchTests */ = {
 			isa = PBXGroup;
 			children = (
-				E29093EA298FC18800D7F5AA /* MovieWatchCombineTests.swift */,
+				E2D6C8DF2A3F560D00242C28 /* Resources */,
+				E29093EA298FC18800D7F5AA /* MovieWatchViewModelTests.swift */,
+				E2D6C8DD2A3F556100242C28 /* CodableUtils.swift */,
 			);
-			path = MovieWatchCombineTests;
+			path = MovieWatchTests;
 			sourceTree = "<group>";
 		};
-		E29093F3298FC18800D7F5AA /* MovieWatchCombineUITests */ = {
+		E29093F3298FC18800D7F5AA /* MovieWatchUITests */ = {
 			isa = PBXGroup;
 			children = (
 				E29093F4298FC18800D7F5AA /* MovieWatchCombineUITests.swift */,
 				E29093F6298FC18800D7F5AA /* MovieWatchCombineUITestsLaunchTests.swift */,
 			);
-			path = MovieWatchCombineUITests;
+			path = MovieWatchUITests;
 			sourceTree = "<group>";
 		};
 		E2909405298FC23E00D7F5AA /* DataMock */ = {
@@ -233,12 +239,20 @@
 			path = DataModels;
 			sourceTree = "<group>";
 		};
+		E2D6C8DF2A3F560D00242C28 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E2D6C8E02A3F562D00242C28 /* UpcomingMovieListMock.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E29093D0298FC18700D7F5AA /* MovieWatchCombine */ = {
+		E29093D0298FC18700D7F5AA /* MovieWatch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E29093FA298FC18800D7F5AA /* Build configuration list for PBXNativeTarget "MovieWatchCombine" */;
+			buildConfigurationList = E29093FA298FC18800D7F5AA /* Build configuration list for PBXNativeTarget "MovieWatch" */;
 			buildPhases = (
 				E29093CD298FC18700D7F5AA /* Sources */,
 				E29093CE298FC18700D7F5AA /* Frameworks */,
@@ -248,17 +262,17 @@
 			);
 			dependencies = (
 			);
-			name = MovieWatchCombine;
+			name = MovieWatch;
 			packageProductDependencies = (
 				E2DF8AB429BE0F40007E6703 /* CachedAsyncImage */,
 			);
 			productName = MovieWatchCombine;
-			productReference = E29093D1298FC18700D7F5AA /* MovieWatchCombine.app */;
+			productReference = E29093D1298FC18700D7F5AA /* MovieWatch.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E29093E5298FC18800D7F5AA /* MovieWatchCombineTests */ = {
+		E29093E5298FC18800D7F5AA /* MovieWatchTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E29093FD298FC18800D7F5AA /* Build configuration list for PBXNativeTarget "MovieWatchCombineTests" */;
+			buildConfigurationList = E29093FD298FC18800D7F5AA /* Build configuration list for PBXNativeTarget "MovieWatchTests" */;
 			buildPhases = (
 				E29093E2298FC18800D7F5AA /* Sources */,
 				E29093E3298FC18800D7F5AA /* Frameworks */,
@@ -269,14 +283,14 @@
 			dependencies = (
 				E29093E8298FC18800D7F5AA /* PBXTargetDependency */,
 			);
-			name = MovieWatchCombineTests;
+			name = MovieWatchTests;
 			productName = MovieWatchCombineTests;
-			productReference = E29093E6298FC18800D7F5AA /* MovieWatchCombineTests.xctest */;
+			productReference = E29093E6298FC18800D7F5AA /* MovieWatchTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E29093EF298FC18800D7F5AA /* MovieWatchCombineUITests */ = {
+		E29093EF298FC18800D7F5AA /* MovieWatchUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2909400298FC18800D7F5AA /* Build configuration list for PBXNativeTarget "MovieWatchCombineUITests" */;
+			buildConfigurationList = E2909400298FC18800D7F5AA /* Build configuration list for PBXNativeTarget "MovieWatchUITests" */;
 			buildPhases = (
 				E29093EC298FC18800D7F5AA /* Sources */,
 				E29093ED298FC18800D7F5AA /* Frameworks */,
@@ -287,9 +301,9 @@
 			dependencies = (
 				E29093F2298FC18800D7F5AA /* PBXTargetDependency */,
 			);
-			name = MovieWatchCombineUITests;
+			name = MovieWatchUITests;
 			productName = MovieWatchCombineUITests;
-			productReference = E29093F0298FC18800D7F5AA /* MovieWatchCombineUITests.xctest */;
+			productReference = E29093F0298FC18800D7F5AA /* MovieWatchUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -315,7 +329,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E29093CC298FC18700D7F5AA /* Build configuration list for PBXProject "MovieWatchCombine" */;
+			buildConfigurationList = E29093CC298FC18700D7F5AA /* Build configuration list for PBXProject "MovieWatch" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -331,9 +345,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E29093D0298FC18700D7F5AA /* MovieWatchCombine */,
-				E29093E5298FC18800D7F5AA /* MovieWatchCombineTests */,
-				E29093EF298FC18800D7F5AA /* MovieWatchCombineUITests */,
+				E29093D0298FC18700D7F5AA /* MovieWatch */,
+				E29093E5298FC18800D7F5AA /* MovieWatchTests */,
+				E29093EF298FC18800D7F5AA /* MovieWatchUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -390,7 +404,7 @@
 				E2909418298FCA8100D7F5AA /* MovieDetails.swift in Sources */,
 				E29093E1298FC18800D7F5AA /* MovieWatchCombine.xcdatamodeld in Sources */,
 				E211850129A23B6700241E12 /* MovieCredit.swift in Sources */,
-				E29093D5298FC18700D7F5AA /* MovieWatchCombineApp.swift in Sources */,
+				E29093D5298FC18700D7F5AA /* MovieWatchApp.swift in Sources */,
 				E23B875129BDF1CC00BCAD3A /* Configure.swift in Sources */,
 				E2909414298FC94C00D7F5AA /* FavoriteMoviesListView.swift in Sources */,
 				E2909410298FC90900D7F5AA /* CrewListView.swift in Sources */,
@@ -402,7 +416,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E29093EB298FC18800D7F5AA /* MovieWatchCombineTests.swift in Sources */,
+				E2D6C8E12A3F562D00242C28 /* UpcomingMovieListMock.json in Sources */,
+				E2D6C8DE2A3F556100242C28 /* CodableUtils.swift in Sources */,
+				E29093EB298FC18800D7F5AA /* MovieWatchViewModelTests.swift in Sources */,
 				E211850629A23CCC00241E12 /* MovieList.swift in Sources */,
 				E211850229A23B6700241E12 /* MovieCredit.swift in Sources */,
 			);
@@ -424,12 +440,12 @@
 /* Begin PBXTargetDependency section */
 		E29093E8298FC18800D7F5AA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E29093D0298FC18700D7F5AA /* MovieWatchCombine */;
+			target = E29093D0298FC18700D7F5AA /* MovieWatch */;
 			targetProxy = E29093E7298FC18800D7F5AA /* PBXContainerItemProxy */;
 		};
 		E29093F2298FC18800D7F5AA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E29093D0298FC18700D7F5AA /* MovieWatchCombine */;
+			target = E29093D0298FC18700D7F5AA /* MovieWatch */;
 			targetProxy = E29093F1298FC18800D7F5AA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -556,7 +572,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MovieWatchCombine/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MovieWatch/Preview Content\"";
 				DEVELOPMENT_TEAM = 35S8BFQC98;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -585,7 +601,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MovieWatchCombine/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MovieWatch/Preview Content\"";
 				DEVELOPMENT_TEAM = 35S8BFQC98;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -623,7 +639,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieWatchCombine.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MovieWatchCombine";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieWatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MovieWatch";
 			};
 			name = Debug;
 		};
@@ -643,7 +659,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieWatchCombine.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MovieWatchCombine";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieWatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MovieWatch";
 			};
 			name = Release;
 		};
@@ -686,7 +702,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E29093CC298FC18700D7F5AA /* Build configuration list for PBXProject "MovieWatchCombine" */ = {
+		E29093CC298FC18700D7F5AA /* Build configuration list for PBXProject "MovieWatch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E29093F8298FC18800D7F5AA /* Debug */,
@@ -695,7 +711,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E29093FA298FC18800D7F5AA /* Build configuration list for PBXNativeTarget "MovieWatchCombine" */ = {
+		E29093FA298FC18800D7F5AA /* Build configuration list for PBXNativeTarget "MovieWatch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E29093FB298FC18800D7F5AA /* Debug */,
@@ -704,7 +720,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E29093FD298FC18800D7F5AA /* Build configuration list for PBXNativeTarget "MovieWatchCombineTests" */ = {
+		E29093FD298FC18800D7F5AA /* Build configuration list for PBXNativeTarget "MovieWatchTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E29093FE298FC18800D7F5AA /* Debug */,
@@ -713,7 +729,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2909400298FC18800D7F5AA /* Build configuration list for PBXNativeTarget "MovieWatchCombineUITests" */ = {
+		E2909400298FC18800D7F5AA /* Build configuration list for PBXNativeTarget "MovieWatchUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2909401298FC18800D7F5AA /* Debug */,
