@@ -22,6 +22,8 @@ extension MovieListType {
 }
 
 class MovieWatchViewModel: ObservableObject {
+    let session: URLSession
+    
     let baseURL = "https://api.themoviedb.org/3/movie/"
     let language = "en-US"
     private let apiKey = Configuration.apiKey
@@ -32,6 +34,10 @@ class MovieWatchViewModel: ObservableObject {
     @Published var crews: [Crew]? = []
     @Published var currentPage: Int = 1
     @Published var movieListType: MovieListType = .popular
+    
+    init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
 
     @MainActor
     func loadMoreMovies(movieListType: MovieListType) async throws {
@@ -44,7 +50,7 @@ class MovieWatchViewModel: ObservableObject {
         guard let url = URL(string: apiURLString) else {
             return
         }
-        let (data, _) = try await URLSession.shared.data(from: url)
+        let (data, _) = try await session.data(from: url)
         let decoder = JSONDecoder()
         let movies = try decoder.decode(MovieList.self, from: data)
         for movie in movies.results {
@@ -58,7 +64,7 @@ class MovieWatchViewModel: ObservableObject {
         guard let url = URL(string: apiURLString) else {
             return nil
         }
-        let (data, _) = try await URLSession.shared.data(from: url)
+        let (data, _) = try await session.data(from: url)
         let decoder = JSONDecoder()
         let movieCredit = try decoder.decode(MovieCredit.self, from: data)
         return movieCredit
